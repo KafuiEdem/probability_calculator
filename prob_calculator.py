@@ -2,6 +2,8 @@ import copy
 import random
 
 class Hat:
+
+    #setting the inital constractor
     def __init__(self, **balls) -> None:
         self.balls = balls
         self.contents = []
@@ -9,7 +11,7 @@ class Hat:
         for ball, count in self.balls.items():
             for _ in range(count):
                 self.contents.append(ball)
-
+    #setting the draw method
     def draw(self, num_ball):
         if num_ball >= len(self.contents):
             return self.contents
@@ -19,7 +21,8 @@ class Hat:
             self.contents.remove(ball)
 
         return drawn_balls
-
+    
+#setting the experiment method
 def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
     experiments_passed = 0
 
@@ -39,6 +42,3 @@ def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
     probability = experiments_passed / num_experiments
     return probability
 
-hat = Hat(black=6, red=4, green=3)
-probability = experiment(hat=hat, expected_balls={"red": 2, "green": 1}, num_balls_drawn=5, num_experiments=2000)
-print(probability)
